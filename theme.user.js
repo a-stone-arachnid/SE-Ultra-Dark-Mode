@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Stack Exchange Ultra Dark Mode
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @updateURL    https://github.com/a-stone-arachnid/Time-Travel-Mode/raw/master/theme.user.js
-// @downloadURL  https://github.com/a-stone-arachnid/Time-Travel-Mode/raw/master/theme.user.js
-// @description  Go back in time!
+// @version      1.0.1
+// @updateURL    https://github.com/a-stone-arachnid/SE-Ultra-Dark-Mode/raw/master/theme.user.js
+// @downloadURL  https://github.com/a-stone-arachnid/SE-Ultra-Dark-Mode/raw/master/theme.user.js
+// @description  Ultra Dark Mode for Stack Exchange
 // @author       a stone arachnid
 // @match        https://*.stackexchange.com/*
 // @match        https://*.askubuntu.com/*
@@ -136,4 +136,13 @@ body.theme-ultradark .top-bar .-logo .-img {
 `;
     $("<style></style>").text(styles).appendTo("head");
     $("body").addClass("theme-ultradark");
+    document.addEventListener('mousemove', e => {
+        window.requestAnimationFrame(() => {
+            const X = e.clientX;
+            const Y = e.clientY;
+
+            document.documentElement.style.setProperty('--cursorX', X + 'px');
+            document.documentElement.style.setProperty('--cursorY', Y + 'px');
+        });
+    });
 })(window.jQuery,window.StackExchange);
